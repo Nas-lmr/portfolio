@@ -63,6 +63,11 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      screens: {
+        "mobile-landscape": {
+          raw: "(max-height: 480px) and (orientation: landscape)",
+        },
+      },
 
       keyframes: {
         "accordion-down": {
