@@ -10,12 +10,12 @@ import Link from "next/link";
 
 export default function About() {
   return (
-    <main className="min-h-screen w-full pt-16 md: px-6">
+    <main className="min-h-screen w-full pt-16 ">
       <section className="pt-4 flex flex-col items-center md:px-11 gap-4 mobile-landscape:gap-2 md:items-start">
         <h1 className="text-3xl font-bold sm:text-4xl text-emerald-400 md:mt-5 md:text-5xl md:text-left mobile-landscape:text-2xl">
           À propos de moi
         </h1>
-        <p className="text-justify  w-11/12 mt-4  md:pl-11 xl:text-lg mobile-landscape:text-sm mobile-landscape:mt-2 mobile-landscape:w-5/6">
+        <p className="text-justify  w-11/12 mt-4  md:pl-11   xl:text-lg mobile-landscape:text-sm mobile-landscape:mt-2 mobile-landscape:w-5/6">
           Je m&apos;appelle{" "}
           <span className="text-emerald-300 font-semibold">Nasreddine</span> et
           je suis un Concepteur Développeur d&apos;Application / Développeur
@@ -32,13 +32,13 @@ export default function About() {
           <Image src={NestIcon} alt="icon-nestjs" width={50} />
           <Image src={TailwindIcon} alt="icon-tailwindcss" width={50} />
         </div>
-        <p className="text-justify w-11/12 md:mt-6  md:pl-11 xl:text-lg mobile-landscape:text-sm mobile-landscape:w-5/6">
+        <p className="text-justify w-11/12 md:mt-6 md:text-center  md:pl-11 xl:text-lg mobile-landscape:text-sm mobile-landscape:w-5/6">
           Aujourd’hui, je suis à la recherche d’une opportunité pour mettre mes
           compétences au service de projets innovants et contribuer à des
           solutions qui ont un impact.
         </p>
-        <p className=" w-11/12 text-center  md:pl-11 xl:text-lg mobile-landscape:text-sm mobile-landscape:w-5/6">
-          Vous avez un projet en tête ?{" "}
+        <p className="w-11/12 text-center  md:pl-11 xl:text-lg mobile-landscape:text-sm mobile-landscape:w-5/6">
+          Vous avez un projet en tête ? <br />
           <Link
             href="/contact"
             className="text-emerald-300 font-semibold mobile-landscape:text-xs"
