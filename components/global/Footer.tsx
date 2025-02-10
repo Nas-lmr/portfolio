@@ -1,3 +1,8 @@
+import Image from "next/image";
+import Link from "next/link";
+import GithubLogo from "../../public/github-icon.svg";
+import LinkedinLogo from "../../public/linkedin-icon.svg";
+
 export default function Footer() {
   return (
     <footer className="bg-zinc-950 text-white py-8">
@@ -10,38 +15,58 @@ export default function Footer() {
           <div className="w-full md:w-1/3 text-center mb-4 md:mb-0">
             <ul className="list-none">
               <li className="inline-block mx-2">
-                <a href="#" className="text-white hover:text-gray-400">
+                <Link href="#" className="text-white hover:text-emerald-400">
                   Accueil
-                </a>
+                </Link>
               </li>
               <li className="inline-block mx-2">
-                <a href="#" className="text-white hover:text-gray-400">
+                <Link
+                  href="/about"
+                  className="text-white hover:text-emerald-400"
+                >
                   À propos
-                </a>
+                </Link>
               </li>
               <li className="inline-block mx-2">
-                <a href="#" className="text-white hover:text-gray-400">
+                <Link
+                  href="/about"
+                  className="text-white hover:text-emerald-400"
+                >
+                  Mes projets
+                </Link>
+              </li>
+              <li className="inline-block mx-2">
+                <Link
+                  href="/contact"
+                  className="text-white hover:text-emerald-400"
+                >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
           <div className="w-full md:w-1/3 text-center md:text-right">
             <ul className="list-none">
               <li className="inline-block mx-2">
-                <a href="#" className="text-white hover:text-gray-400">
-                  <i className="fab fa-facebook-f"></i>
-                </a>
+                <Link href="https://github.com/Nas-lmr">
+                  <Image
+                    src={GithubLogo}
+                    alt="Lien vers mon github"
+                    width={35}
+                  />
+                </Link>
               </li>
               <li className="inline-block mx-2">
-                <a href="#" className="text-white hover:text-gray-400">
-                  <i className="fab fa-twitter"></i>
-                </a>
-              </li>
-              <li className="inline-block mx-2">
-                <a href="#" className="text-white hover:text-gray-400">
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
+                <Link
+                  href="https://www.linkedin.com/in/nasreddine-lamamra/"
+                  className=""
+                >
+                  <Image
+                    src={LinkedinLogo}
+                    alt="Lien vers mon linkedin"
+                    width={35}
+                  />
+                </Link>
               </li>
             </ul>
           </div>
