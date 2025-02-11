@@ -16,7 +16,7 @@ export default function ProjectCard({
         </div>
         <div className="flex flex-col gap-4 items-center w-full h-2/5 mt-2">
           <h2 className=" text-xl font-semibold text-zinc-900">{title}</h2>
-          <p className="text-sm text-gray-500">{techno}</p>
+          <p className="text-sm text-zinc-700">{techno}</p>
           <p className="text-gray-700 text-center">{description}</p>
         </div>
       </div>
