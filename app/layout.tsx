@@ -1,3 +1,4 @@
+import Footer from "@/components/global/Footer";
 import Navbar from "@/components/global/Navbar";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className=" bg-zinc-900 antialiased min-h-screen text-zinc-50">
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -23,9 +23,9 @@ export default function Navlinks() {
         <span className="text-emerald-400 mr-1 font-semibold">02.</span>À propos
       </Link>
       <Link
-        href="/projets"
+        href="/projects"
         className={`text-white ${
-          pathname === "/projets" ? " border-b-4 border-emerald-400" : ""
+          pathname === "/projects" ? " border-b-4 border-emerald-400" : ""
         }hover:text-emerald-400 hover:border-b-4 border-emerald-400 transition-all duration-100 ease-in-out`}
       >
         <span className="text-emerald-400 mr-1 font-semibold">03.</span>Mes
