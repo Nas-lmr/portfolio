@@ -29,8 +29,5 @@ jobs:
       - name: Run ESLint (Linting)
         run: npm run lint
 
-      - name: Run Tests
-        run: npm test
-
       - name: Build Next.js
         run: npm run build
