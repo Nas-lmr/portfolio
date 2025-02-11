@@ -1,6 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import * as z from "zod";
+
+const contactSchema = z.object({
+  name: z
+    .string()
+    .min(3, "Le nom doit contenir au moins 3 caractères")
+    .max(50, "Le nom est trop long"),
+  email: z.string().email("Adresse email invalide"),
+  message: z
+    .string()
+    .min(10, "Le message doit contenir au moins 10 caractères")
+    .max(1000, "Le message est trop long"),
+});
 
 export default function ContactForm() {
   const emailContact = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
@@ -10,6 +23,11 @@ export default function ContactForm() {
     email: "",
     message: "",
   });
+  const [errors, setErrors] = useState<{
+    name?: string;
+    email?: string;
+    message?: string;
+  }>({});
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
 
@@ -21,8 +39,21 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setErrors({});
     setResponseMessage("");
+
+    const validationResult = contactSchema.safeParse(formData);
+    if (!validationResult.success) {
+      const fieldErrors = validationResult.error.flatten().fieldErrors;
+      setErrors({
+        name: fieldErrors.name?.[0],
+        email: fieldErrors.email?.[0],
+        message: fieldErrors.message?.[0],
+      });
+      return;
+    }
+    setLoading(true);
+
     try {
       const res = await fetch("/api/sendEmail", {
         method: "POST",
@@ -67,6 +98,9 @@ export default function ContactForm() {
             className="w-full p-2 text-zinc-800 border rounded-lg focus:ring focus:ring-emerald-300"
             required
           />
+          {errors.name && (
+            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+          )}
         </div>
 
         <div>
@@ -79,6 +113,9 @@ export default function ContactForm() {
             className="w-full p-2 text-zinc-800 border rounded-lg focus:ring focus:ring-emerald-300"
             required
           />
+          {errors.email && (
+            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+          )}
         </div>
 
         <div>
@@ -90,11 +127,15 @@ export default function ContactForm() {
             className="w-full p-2 text-zinc-800 border rounded-lg h-32 focus:ring focus:ring-emerald-300"
             required
           />
+          {errors.message && (
+            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+          )}
         </div>
 
         <button
           type="submit"
-          className="w-full bg-emerald-500 text-white py-2 rounded-lg hover:bg-emerald-700 transition duration-300 ease-in-out"
+          className="w-full bg-emerald-500 text-white py-2 rounded-lg hover:bg-emerald-700 transition duration-300 ease-in-out disabled:bg-zinc-600 disabled:cursor-not-allowed disabled:text-zinc-300"
+          disabled={loading}
         >
           {loading ? "Envoi en cours..." : "Envoyer"}
         </button>
