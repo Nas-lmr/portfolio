@@ -23,6 +23,9 @@ jobs:
           node-version: 18
           cache: "npm"
 
+      - name: Fix dependency resolution
+        run: npm install --legacy-peer-deps
+
       - name: Install dependencies
         run: npm install
 
