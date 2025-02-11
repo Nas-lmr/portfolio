@@ -1,8 +1,39 @@
 import type { Config } from "tailwindcss";
-import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette";
-function addVariablesForColors({ addBase, theme }: any) {
+
+// Typage de la fonction flattenColorPalette
+const flattenColorPalette = (
+  colors: Record<string, unknown>
+): Record<string, string> => {
+  const result: Record<string, string> = {};
+
+  Object.entries(colors).forEach(([key, value]) => {
+    if (typeof value === "object" && value !== null) {
+      // On s'assure ici que les valeurs à l'intérieur sont de type string
+      Object.entries(value as Record<string, string>).forEach(
+        ([subKey, subValue]) => {
+          if (typeof subValue === "string") {
+            result[`${key}-${subKey}`] = subValue;
+          }
+        }
+      );
+    } else if (typeof value === "string") {
+      result[key] = value;
+    }
+  });
+
+  return result;
+};
+
+// Définition des types des paramètres
+type AddVariablesForColorsProps = {
+  addBase: (arg: { ":root": Record<string, string> }) => void;
+  theme: (key: string) => Record<string, string>;
+};
+
+// Fonction addVariablesForColors
+function addVariablesForColors({ addBase, theme }: AddVariablesForColorsProps) {
   const allColors = flattenColorPalette(theme("colors"));
-  const newVars = Object.fromEntries(
+  const newVars: Record<string, string> = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
   );
 
@@ -10,7 +41,8 @@ function addVariablesForColors({ addBase, theme }: any) {
     ":root": newVars,
   });
 }
-const config = {
+
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -68,7 +100,6 @@ const config = {
           raw: "(max-height: 480px) and (orientation: landscape)",
         },
       },
-
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -90,6 +121,6 @@ const config = {
     },
   },
   plugins: [addVariablesForColors],
-} satisfies Config;
+};
 
 export default config;
