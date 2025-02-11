@@ -1,6 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Bounce, toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as z from "zod";
 
 const contactSchema = z.object({
@@ -17,6 +20,7 @@ const contactSchema = z.object({
 
 export default function ContactForm() {
   const emailContact = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+  const { push } = useRouter();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -64,14 +68,19 @@ export default function ContactForm() {
       });
       const data = await res.json();
       if (res.ok) {
-        setResponseMessage("Votre message a été envoyé avec succès");
+        toast.success(
+          "Votre message a été envoyé avec succès !\nVous serez redirigé vers la page d'accueil dans quelques instants."
+        );
         setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => {
+          push("/");
+        }, 2500);
       } else {
-        setResponseMessage(data.error || "Une erreur s'est produite");
+        toast.error(data.error || "Une erreur s'est produite");
       }
     } catch (error) {
       console.error("Erreur lors de l'envoi du message :", error);
-      setResponseMessage("Une erreur s'est produite");
+      toast.error("Une erreur s'est produite");
     }
     setLoading(false);
   };
@@ -87,6 +96,7 @@ export default function ContactForm() {
       {responseMessage && (
         <p className="text-center text-white p-2 mt-2">{responseMessage}</p>
       )}
+
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <div>
           <label className="block text-gray-200">Nom</label>
@@ -114,7 +124,7 @@ export default function ContactForm() {
             required
           />
           {errors.email && (
-            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
           )}
         </div>
 
@@ -128,7 +138,7 @@ export default function ContactForm() {
             required
           />
           {errors.message && (
-            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+            <p className="text-red-500 text-sm mt-1">{errors.message}</p>
           )}
         </div>
 
@@ -165,6 +175,14 @@ export default function ContactForm() {
           GitHub
         </a>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        theme="dark"
+        hideProgressBar
+        autoClose={5000}
+        transition={Bounce}
+        style={{ whiteSpace: "pre-line" }}
+      />
     </div>
   );
 }
