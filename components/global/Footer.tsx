@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="w-full md:w-1/3 text-center mb-4 md:mb-0">
             <ul className="list-none">
               <li className="inline-block mx-2">
-                <Link href="#" className="text-white hover:text-emerald-400">
+                <Link href="/" className="text-white hover:text-emerald-400">
                   Accueil
                 </Link>
               </li>
@@ -29,7 +29,7 @@ export default function Footer() {
               </li>
               <li className="inline-block mx-2">
                 <Link
-                  href="/about"
+                  href="/projects"
                   className="text-white hover:text-emerald-400"
                 >
                   Mes projets
