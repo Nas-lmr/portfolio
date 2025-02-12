@@ -1,17 +1,5 @@
+import { projects } from "@/lib/projects";
 import Link from "next/link";
-
-const projects = [
-  {
-    title: "Sayara",
-    description: "Description du projet 1",
-    link: "https://example.com/project1",
-  },
-  {
-    title: "School Sign",
-    description: "Description du projet 2",
-    link: "https://example.com/project2",
-  },
-];
 
 export default function ProjectPage() {
   return (
@@ -34,7 +22,7 @@ export default function ProjectPage() {
             <h2 className="text-xl font-bold text-emerald-500">
               {project.title}
             </h2>
-            <p className="text-gray-700 mt-2">{project.description}</p>
+            <p className="text-gray-700 mt-2">{project.shortDescription}</p>
             <a
               href={project.link}
               target="_blank"

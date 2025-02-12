@@ -1,7 +1,9 @@
 export interface IProjectCard {
   title: string;
-  description: string;
-  techno: string;
-  image: string;
-  link?: string;
+  shortDescription?: string;
+  description?: string;
+  techno: string[];
+  logo: string;
+  images?: string[];
+  slug: string;
 }
