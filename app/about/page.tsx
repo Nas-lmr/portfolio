@@ -1,10 +1,10 @@
 import LastProjects from "@/components/infos/LastProjects";
-import AngularIcon from "@/public/icon-angularjs.svg";
-import NestIcon from "@/public/icon-nestjs.svg";
-import NextIcon from "@/public/icon-nextjs.svg";
-import NodeIcon from "@/public/icon-nodejs.svg";
-import ReactIcon from "@/public/icon-react.svg";
-import TailwindIcon from "@/public/icon-tailwindcss.svg";
+import AngularIcon from "@/public/icons/icon-angularjs.svg";
+import NestIcon from "@/public/icons/icon-nestjs.svg";
+import NextIcon from "@/public/icons/icon-nextjs.svg";
+import NodeIcon from "@/public/icons/icon-nodejs.svg";
+import ReactIcon from "@/public/icons/icon-react.svg";
+import TailwindIcon from "@/public/icons/icon-tailwindcss.svg";
 import Image from "next/image";
 import Link from "next/link";
 
