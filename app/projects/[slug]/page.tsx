@@ -7,19 +7,19 @@ import { notFound, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function ProjectDetailPage() {
-  const params = useParams(); // ✅ Utilisation correcte de params dans l'App Router
-  const slug = params.slug as string; // On s'assure que c'est une string
+  const params = useParams();
+  const slug = params.slug;
   const project = projects.find((p) => p.slug === slug);
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     if (project) {
-      setSelectedImage(project.images[0]); // ✅ Évite de modifier l'état pendant le rendu
+      setSelectedImage(project.images[0]);
     }
   }, [project]);
 
-  if (!project) return notFound(); // ✅ Après les Hooks, sans interrompre le rendu
+  if (!project) return notFound();
 
   return (
     <main className="min-h-screen w-full pt-16 px-6 md:px-12">
@@ -89,7 +89,7 @@ export default function ProjectDetailPage() {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-block bg-emerald-500 text-white py-3 px-6 rounded-lg hover:bg-emerald-600 transition duration-300 ease-in-out text-center"
+            className="mt-6 mb-4 inline-block w-3/4 item-center bg-emerald-500 text-white py-3 px-6 rounded-lg hover:bg-emerald-600 transition duration-300 ease-in-out text-center"
           >
             Voir le projet
           </Link>

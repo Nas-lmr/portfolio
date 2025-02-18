@@ -25,7 +25,9 @@ export default function Navlinks() {
       <Link
         href="/projects"
         className={`text-white ${
-          pathname === "/projects" ? " border-b-4 border-emerald-400" : ""
+          pathname.startsWith("/projects")
+            ? " border-b-4 border-emerald-400"
+            : ""
         }hover:text-emerald-400 hover:border-b-4 border-emerald-400 transition-all duration-100 ease-in-out`}
       >
         <span className="text-emerald-400 mr-1 font-semibold">03.</span>Mes

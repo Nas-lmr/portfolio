@@ -15,18 +15,6 @@ export const projects = [
       "/images/trips-mobile.png",
     ],
     details: "Voici quelques détails supplémentaires sur le projet Sayara.",
-    link: "https://example.com/project1",
-  },
-  {
-    slug: "school-sign",
-    title: "School Sign",
-    logo: "/icon-react.svg",
-    shortDescription: "Application de gestion de signatures pour les écoles",
-    techno: ["React, Next.js, Prisma, TailwindCSS"],
-    images: ["/icon-react.svg"],
-    details:
-      "Voici quelques détails supplémentaires sur le projet School Sign.",
-    link: "https://example.com/project2",
-    video: "eeee",
+    link: "https://sayara.cloud",
   },
 ];

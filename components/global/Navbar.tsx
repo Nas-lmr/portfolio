@@ -32,7 +32,7 @@ export default function Navbar() {
     ${isScrolled ? "bg-zinc-900" : "bg-transparent"}
     `}
     >
-      <Link href={"/"}>
+      <Link href={"/"} className="cursor-pointer ml-3">
         <Image src={Logo} alt="Logo du portfolio" width={45} height={45} />
       </Link>
       <MenuBurger />

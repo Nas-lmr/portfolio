@@ -1,6 +1,19 @@
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import * as z from "zod";
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
+
+const rateLimit = new Ratelimit({
+  redis,
+  limiter: Ratelimit.fixedWindow(3, "60 s"),
+  analytics: true,
+});
 
 const contactSchema = z.object({
   name: z
@@ -12,10 +25,20 @@ const contactSchema = z.object({
     .string()
     .min(10, "Le message doit contenir au moins 10 caractères")
     .max(1000, "Le message est trop long"),
+  captcha: z.string(),
 });
 
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get("x-forwarded-for") || "anonymous";
+    const { success } = await rateLimit.limit(ip);
+    if (!success) {
+      return NextResponse.json(
+        { error: "Trop de requêtes, veuillez réessayer plus tard." },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
     const validation = contactSchema.safeParse(body);
     if (!validation.success) {
@@ -28,7 +51,29 @@ export async function POST(req: Request) {
       );
     }
 
-    const { name, email, message } = validation.data;
+    const { name, email, message, captcha } = validation.data;
+
+    const recaptchaRes = await fetch(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          secret: process.env.RECAPTCHA_SECRET_KEY!, // Utiliser ta clé secrète ici
+          response: captcha, // Le token reCAPTCHA envoyé depuis le frontend
+        }),
+      }
+    );
+
+    const recaptchaData = await recaptchaRes.json();
+
+    // Vérifie que le reCAPTCHA a bien été validé
+    if (!recaptchaData.success || recaptchaData.score < 0.5) {
+      return NextResponse.json(
+        { error: "Échec de la vérification reCAPTCHA" },
+        { status: 400 }
+      );
+    }
 
     if (
       !process.env.EMAIL_HOST ||
