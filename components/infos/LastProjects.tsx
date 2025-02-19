@@ -1,19 +1,5 @@
+import { projects } from "@/lib/projects";
 import ProjectCard from "./ProjectCard";
-
-const projects = [
-  {
-    title: "Sayara",
-    description: "Application de covoiturage",
-    techno: "React, NestJS, MUI, Stripe",
-    image: "/Sayara-logo.png",
-  },
-  {
-    title: "School Sign",
-    description: "Application de gestion de signatures pour les écoles",
-    techno: "React, Next.js, Prisma, TailwindCSS",
-    image: "/icon-react.svg",
-  },
-];
 
 export default function LastProjects() {
   return (
@@ -22,15 +8,18 @@ export default function LastProjects() {
         Mes derniers projets
       </h3>
       <div className="flex flex-wrap justify-center gap-4 mt-4 md:gap-16 md:p-4 md:min-w-full">
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            title={project.title}
-            description={project.description}
-            techno={project.techno}
-            image={project.image}
-          />
-        ))}
+        {projects
+          .filter((project) => project.link)
+          .map((project) => (
+            <ProjectCard
+              key={project.slug}
+              title={project.title}
+              shortDescription={project.shortDescription}
+              techno={project.techno}
+              logo={project.logo}
+              slug={project.slug}
+            />
+          ))}
       </div>
     </section>
   );

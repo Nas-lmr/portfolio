@@ -12,17 +12,11 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 0);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -32,7 +26,7 @@ export default function Navbar() {
     ${isScrolled ? "bg-zinc-900" : "bg-transparent"}
     `}
     >
-      <Link href={"/"}>
+      <Link href={"/"} className="cursor-pointer ml-3">
         <Image src={Logo} alt="Logo du portfolio" width={45} height={45} />
       </Link>
       <MenuBurger />

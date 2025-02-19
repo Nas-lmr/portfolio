@@ -16,6 +16,7 @@ export const viewport = {
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["100", "300", "400", "700", "900"],
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -24,8 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={montserrat.className}>
-      <body className=" bg-zinc-900 antialiased min-h-screen text-zinc-50">
+    <html lang="en">
+      <body
+        className={`${montserrat.className} bg-zinc-900 antialiased min-h-screen text-zinc-50`}
+        suppressHydrationWarning={true}
+      >
         <Navbar />
         {children}
         <Footer />
