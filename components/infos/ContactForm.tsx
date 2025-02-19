@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as z from "zod";
@@ -20,20 +21,32 @@ const contactSchema = z.object({
 
 export default function ContactForm() {
   const emailContact = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!;
   const { push } = useRouter();
+
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [isClient, setIsClient] = useState(false); // To detect if we are on the client-side
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    captcha: "",
   });
+
   const [errors, setErrors] = useState<{
     name?: string;
     email?: string;
     message?: string;
   }>({});
+
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
+
+  // Effect hook to set the state for the client-side rendering
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -46,6 +59,25 @@ export default function ContactForm() {
     setErrors({});
     setResponseMessage("");
 
+    if (!isClient) return; // Skip the form submission if not on the client-side
+
+    // Check if reCAPTCHA site key exists
+    if (!recaptchaSiteKey) {
+      toast.error("Clé reCAPTCHA manquante.");
+      return;
+    }
+
+    // Attempt to get the reCAPTCHA token
+    const captchaToken = await recaptchaRef.current?.executeAsync();
+    if (!captchaToken) {
+      toast.error("Veuillez valider le CAPTCHA.");
+      return;
+    }
+
+    // Update formData with captcha token
+    setFormData((prevData) => ({ ...prevData, captcha: captchaToken }));
+
+    // Validate form fields
     const validationResult = contactSchema.safeParse(formData);
     if (!validationResult.success) {
       const fieldErrors = validationResult.error.flatten().fieldErrors;
@@ -56,9 +88,11 @@ export default function ContactForm() {
       });
       return;
     }
+
     setLoading(true);
 
     try {
+      // Send the form data along with captcha token
       const res = await fetch("/api/sendEmail", {
         method: "POST",
         headers: {
@@ -66,12 +100,13 @@ export default function ContactForm() {
         },
         body: JSON.stringify(formData),
       });
+
       const data = await res.json();
       if (res.ok) {
         toast.success(
           "Votre message a été envoyé avec succès !\nVous serez redirigé vers la page d'accueil dans quelques instants."
         );
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", message: "", captcha: "" });
         setTimeout(() => {
           push("/");
         }, 2500);
@@ -142,6 +177,12 @@ export default function ContactForm() {
           )}
         </div>
 
+        <ReCAPTCHA
+          sitekey={recaptchaSiteKey}
+          ref={recaptchaRef}
+          size="invisible"
+        />
+
         <button
           type="submit"
           className="w-full bg-emerald-500 text-white py-2 rounded-lg hover:bg-emerald-700 transition duration-300 ease-in-out disabled:bg-zinc-600 disabled:cursor-not-allowed disabled:text-zinc-300"
@@ -175,6 +216,7 @@ export default function ContactForm() {
           GitHub
         </a>
       </div>
+
       <ToastContainer
         position="bottom-right"
         theme="dark"

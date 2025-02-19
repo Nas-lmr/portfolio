@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import GithubLogo from "../../public/github-icon.svg";
-import LinkedinLogo from "../../public/linkedin-icon.svg";
+import GithubLogo from "../../public/icons/github-icon.svg";
+import LinkedinLogo from "../../public/icons/linkedin-icon.svg";
 
 export default function Footer() {
   return (
-    <footer className="bg-zinc-950 text-white py-8">
+    <footer className="bg-zinc-950 text-white py-8 ">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between items-center">
           <div className="w-full md:w-1/3 text-center md:text-left mb-4 md:mb-0">
@@ -15,14 +15,17 @@ export default function Footer() {
           <div className="w-full md:w-1/3 text-center mb-4 md:mb-0">
             <ul className="list-none">
               <li className="inline-block mx-2">
-                <Link href="/" className="text-white hover:text-emerald-400">
+                <Link
+                  href="/"
+                  className="text-white hover:text-emerald-400 transition-colors duration-300"
+                >
                   Accueil
                 </Link>
               </li>
               <li className="inline-block mx-2">
                 <Link
                   href="/about"
-                  className="text-white hover:text-emerald-400"
+                  className="text-white hover:text-emerald-400 transition-colors duration-300"
                 >
                   À propos
                 </Link>
@@ -30,7 +33,7 @@ export default function Footer() {
               <li className="inline-block mx-2">
                 <Link
                   href="/projects"
-                  className="text-white hover:text-emerald-400"
+                  className="text-white hover:text-emerald-400 transition-colors duration-300"
                 >
                   Mes projets
                 </Link>
@@ -38,7 +41,7 @@ export default function Footer() {
               <li className="inline-block mx-2">
                 <Link
                   href="/contact"
-                  className="text-white hover:text-emerald-400"
+                  className="text-white hover:text-emerald-400 transition-colors duration-300"
                 >
                   Contact
                 </Link>

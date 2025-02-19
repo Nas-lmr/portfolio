@@ -3,8 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import CloseLogo from "../../public/cross.svg";
-import GithubLogo from "../../public/github-icon.svg";
-import LinkedinLogo from "../../public/linkedin-icon.svg";
+import GithubLogo from "../../public/icons/github-icon.svg";
+import LinkedinLogo from "../../public/icons/linkedin-icon.svg";
 import MenuLogo from "../../public/menu.svg";
 
 export default function MenuBurger() {
