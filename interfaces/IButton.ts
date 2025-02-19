@@ -1,4 +1,5 @@
 export interface IButton {
+  apparence:string
   logo?: string;
   label: string;
   bgColor?: string;
