@@ -61,7 +61,6 @@ export default function ProjectDetailPage() {
           </div>
         </div>
 
-        {/* Description & Technologies */}
         <div className="flex flex-col justify-center">
           <h2 className="text-2xl font-semibold text-emerald-500">
             Technologies utilisées

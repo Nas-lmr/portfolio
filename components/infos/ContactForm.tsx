@@ -41,7 +41,6 @@ export default function ContactForm() {
   }>({});
 
   const [loading, setLoading] = useState(false);
-  const [responseMessage, setResponseMessage] = useState("");
 
   // Effect hook to set the state for the client-side rendering
   useEffect(() => {
@@ -57,7 +56,6 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
-    setResponseMessage("");
 
     if (!isClient) return; // Skip the form submission if not on the client-side
 
@@ -128,9 +126,6 @@ export default function ContactForm() {
       <p className="text-gray-200 text-center mt-2">
         Envoyez-moi un message, je vous répondrai rapidement !
       </p>
-      {responseMessage && (
-        <p className="text-center text-white p-2 mt-2">{responseMessage}</p>
-      )}
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <div>

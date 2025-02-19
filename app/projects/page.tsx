@@ -1,5 +1,6 @@
+import Button from "@/components/global/Button";
+import LittleProjectCard from "@/components/infos/LittleProjectCard";
 import { projects } from "@/lib/projects";
-import Link from "next/link";
 
 export default function ProjectPage() {
   return (
@@ -14,24 +15,8 @@ export default function ProjectPage() {
         explorer les fonctionnalités.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-lg shadow-emerald-700 rounded-lg p-6 transition-transform transform hover:scale-105"
-          >
-            <h2 className="text-xl font-bold text-emerald-500">
-              {project.title}
-            </h2>
-            <p className="text-gray-700 mt-2">{project.shortDescription}</p>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-block text-emerald-600 hover:underline"
-            >
-              Voir le projet
-            </a>
-          </div>
+        {projects.map((project) => (
+          <LittleProjectCard key={project.slug} {...project} />
         ))}
       </div>
       <section className="text-center py-12 mt-12">
@@ -42,12 +27,11 @@ export default function ProjectPage() {
           Si vous êtes intéressé par un projet ou si vous souhaitez discuter
           d&apos;une opportunité de collaboration, contactez-moi !
         </p>
-        <Link
-          href="/contact"
-          className="mt-4 inline-block bg-emerald-500 text-white py-3 px-6 rounded-lg hover:bg-emerald-600 transition duration-300 ease-in-out"
-        >
-          Contactez-moi
-        </Link>
+        <Button
+          link="/contact"
+          label="Contactez-moi"
+          apparence="mt-4 inline-block bg-emerald-500 text-white font-medium py-3 px-6 rounded-lg hover:bg-emerald-600"
+        />
       </section>
     </main>
   );

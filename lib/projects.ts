@@ -17,4 +17,15 @@ export const projects = [
     details: "Voici quelques détails supplémentaires sur le projet Sayara.",
     link: "https://sayara.cloud",
   },
+  {
+    slug: "",
+    title: "???",
+    logo: "",
+    shortDescription: "En cours de développement",
+    description: "En cours de développement",
+    techno: ["NextJS, Typescript, TailwindCSS, Prisma"],
+    images: [""],
+    details: "",
+    link: "",
+  },
 ];

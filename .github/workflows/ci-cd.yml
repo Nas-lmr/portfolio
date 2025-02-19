@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
     branches:
       - main
+      - dev
 
 jobs:
   build-and-test:
@@ -24,7 +26,7 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install
 
       - name: Run ESLint (Linting)
         run: npm run lint

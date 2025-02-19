@@ -8,16 +8,18 @@ export default function LastProjects() {
         Mes derniers projets
       </h3>
       <div className="flex flex-wrap justify-center gap-4 mt-4 md:gap-16 md:p-4 md:min-w-full">
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.slug}
-            title={project.title}
-            shortDescription={project.shortDescription}
-            techno={project.techno}
-            logo={project.logo}
-            slug={project.slug}
-          />
-        ))}
+        {projects
+          .filter((project) => project.link)
+          .map((project) => (
+            <ProjectCard
+              key={project.slug}
+              title={project.title}
+              shortDescription={project.shortDescription}
+              techno={project.techno}
+              logo={project.logo}
+              slug={project.slug}
+            />
+          ))}
       </div>
     </section>
   );
