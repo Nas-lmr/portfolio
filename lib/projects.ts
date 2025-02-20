@@ -1,5 +1,3 @@
-// lib/projects.ts
-
 export const projects = [
   {
     slug: "sayara",
@@ -16,6 +14,7 @@ export const projects = [
     ],
     details: "Voici quelques détails supplémentaires sur le projet Sayara.",
     link: "https://sayara.cloud",
+    link2: "https://github.com/Nas-lmr/SayaraP4",
   },
   {
     slug: "",

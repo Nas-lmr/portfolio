@@ -7,4 +7,5 @@ export interface IProjectCard {
   images?: string[];
   slug: string;
   link?: string;
+  link2?: string;
 }

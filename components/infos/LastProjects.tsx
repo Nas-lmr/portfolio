@@ -9,7 +9,7 @@ export default function LastProjects() {
       </h3>
       <div className="flex flex-wrap justify-center gap-4 mt-4 md:gap-16 md:p-4 md:min-w-full">
         {projects
-          .filter((project) => project.link)
+          .filter((project) => project.link || project.link2)
           .map((project) => (
             <ProjectCard
               key={project.slug}
