@@ -25,7 +25,7 @@ export default function ContactForm() {
   const { push } = useRouter();
 
   const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const [isClient, setIsClient] = useState(false); // To detect if we are on the client-side
+  const [isClient, setIsClient] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -42,7 +42,6 @@ export default function ContactForm() {
 
   const [loading, setLoading] = useState(false);
 
-  // Effect hook to set the state for the client-side rendering
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -57,25 +56,21 @@ export default function ContactForm() {
     e.preventDefault();
     setErrors({});
 
-    if (!isClient) return; // Skip the form submission if not on the client-side
+    if (!isClient) return;
 
-    // Check if reCAPTCHA site key exists
     if (!recaptchaSiteKey) {
       toast.error("Clé reCAPTCHA manquante.");
       return;
     }
 
-    // Attempt to get the reCAPTCHA token
     const captchaToken = await recaptchaRef.current?.executeAsync();
     if (!captchaToken) {
       toast.error("Veuillez valider le CAPTCHA.");
       return;
     }
 
-    // Update formData with captcha token
     setFormData((prevData) => ({ ...prevData, captcha: captchaToken }));
 
-    // Validate form fields
     const validationResult = contactSchema.safeParse(formData);
     if (!validationResult.success) {
       const fieldErrors = validationResult.error.flatten().fieldErrors;
@@ -90,7 +85,6 @@ export default function ContactForm() {
     setLoading(true);
 
     try {
-      // Send the form data along with captcha token
       const res = await fetch("/api/sendEmail", {
         method: "POST",
         headers: {
