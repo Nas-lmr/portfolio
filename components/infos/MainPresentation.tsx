@@ -24,7 +24,7 @@ export default function MainPresentation() {
         <Button
           link="/about"
           label="Plus d'infos"
-          apparence="h-12 w-40 bg-emerald-500 hover:bg-emerald-600 text-white  rounded mt-4 md:mt-6 mobile-landscape:mt-2"
+          apparence="h-12 w-40 bg-emerald-500 hover:bg-emerald-600 hover:text-white text-zinc-800 font-semibold rounded mt-4 md:mt-6 mobile-landscape:mt-2"
         />
       </div>
     </>
