@@ -28,9 +28,7 @@ export default function ProjectDetailPage() {
       </h1>
 
       <div className="grid md:grid-cols-2 md:h-full gap-12">
-        {/* Images */}
         <div className="space-y-4 flex flex-col items-center justify-around">
-          {/* Image principale */}
           {selectedImage && (
             <Image
               src={selectedImage}
@@ -41,7 +39,6 @@ export default function ProjectDetailPage() {
             />
           )}
 
-          {/* Miniatures des autres images */}
           <div className="flex gap-10 mt-4">
             {project.images.map((img, index) => (
               <Image
@@ -84,14 +81,25 @@ export default function ProjectDetailPage() {
           </h4>
           <p className="mt-1 text-gray-300">{project.description}</p>
 
-          <Link
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 mb-4 inline-block w-3/4 item-center bg-emerald-500 text-white py-3 px-6 rounded-lg hover:bg-emerald-600 transition duration-300 ease-in-out text-center"
-          >
-            Voir le projet
-          </Link>
+          <div className="flex flex-col items-center justify-center mt-6 mb-4">
+            <Link
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-3/4 bg-emerald-500 text-zinc-800 font-semibold py-3 px-6 rounded-lg hover:text-white hover:bg-emerald-700 transition duration-300 ease-in-out text-center"
+            >
+              Voir le projet
+            </Link>
+
+            <Link
+              href={project.link2!}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 w-3/4 bg-white text-zinc-800 font-semibold py-3 px-6 rounded-lg hover:bg-transparent hover:text-emerald-500 hover:outline hover:outline-emerald-500 transition duration-300 ease-in-out text-center"
+            >
+              Github
+            </Link>
+          </div>
         </div>
       </div>
     </main>
