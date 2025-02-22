@@ -66,7 +66,7 @@ export default function MenuBurger() {
           </Link>
           <Link
             onClick={handleCloseMenu}
-            href="/projets"
+            href="/projects"
             className={`text-white w-fit${
               pathname === "/projets" ? "border-b-4 border-emerald-400" : ""
             }`}
