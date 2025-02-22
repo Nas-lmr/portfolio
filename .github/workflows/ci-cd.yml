@@ -57,7 +57,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          source: ".next/, package.json, package-lock.json, public/, .env"
+          source: "."
           target: "/home/nas/portfolio"
           strip_components: 1
 
