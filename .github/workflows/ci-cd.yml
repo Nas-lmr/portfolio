@@ -70,7 +70,15 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
+
+            node -v  
+            npm -v   
+            pm2 -v   
+
             cd /home/nas/portfolio
-            npm install --omit=dev  
-            pm2 delete portfolio || true  
+            npm install --omit=dev
+            pm2 delete portfolio || true
             pm2 start npm --name "portfolio" -- run start
