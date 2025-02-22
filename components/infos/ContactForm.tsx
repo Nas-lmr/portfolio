@@ -113,7 +113,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-zinc-800 shadow-lg rounded-2xl p-6 w-full max-w-2xl">
+    <div className="bg-zinc-800 shadow-lg rounded-2xl p-6 w-full mt-4 max-w-2xl">
       <h2 className="text-3xl font-bold text-center text-emerald-400">
         Contactez-moi
       </h2>

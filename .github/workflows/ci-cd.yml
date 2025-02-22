@@ -57,7 +57,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          source: ".next/, package.json, package-lock.json, public/, .env"
+          source: "."
           target: "/home/nas/portfolio"
           strip_components: 1
 
@@ -70,7 +70,22 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
+
+            node -v  
+            npm -v   
+            pm2 -v   
+
+            echo "Accès au projet"
             cd /home/nas/portfolio
-            npm install --omit=dev  
-            pm2 delete portfolio || true  
+
+            echo "Installation des dépendances "
+            npm install 
+
+            echo "Redémarrage de l'application avec PM2"
+            pm2 delete portfolio || true
             pm2 start npm --name "portfolio" -- run start
+            pm2 save
+            pm2 status
