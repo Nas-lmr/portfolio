@@ -59,18 +59,16 @@ export async function POST(req: Request) {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
-          secret: process.env.RECAPTCHA_SECRET_KEY!, // Utiliser ta clé secrète ici
-          response: captcha, // Le token reCAPTCHA envoyé depuis le frontend
+          secret: process.env.RECAPTCHA_SECRET_KEY!,
+          response: captcha,
         }),
       }
     );
 
     const recaptchaData = await recaptchaRes.json();
-
-    // Vérifie que le reCAPTCHA a bien été validé
     if (!recaptchaData.success || recaptchaData.score < 0.5) {
       return NextResponse.json(
-        { error: "Échec de la vérification reCAPTCHA" },
+        { error: "Échec de la vérification reCAPTCHA veuillez réessayer" },
         { status: 400 }
       );
     }
