@@ -3,6 +3,7 @@ import Navbar from "@/components/global/Navbar";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Nasdevpro - Développeur Full Stack",
@@ -40,6 +41,11 @@ export default function RootLayout({
         className={`${montserrat.className} bg-zinc-900 antialiased min-h-screen text-zinc-50`}
         suppressHydrationWarning={true}
       >
+        <Script
+          strategy="beforeInteractive"
+          src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+        />
+
         <Navbar />
         {children}
         <Footer />
