@@ -58,18 +58,14 @@ export default function ContactForm() {
 
     if (!isClient) return;
 
-    if (!recaptchaSiteKey) {
-      toast.error("Clé reCAPTCHA manquante.");
-      return;
-    }
-
     const captchaToken = await recaptchaRef.current?.executeAsync();
+
     if (!captchaToken) {
-      toast.error("Veuillez valider le CAPTCHA.");
+      console.error("Veuillez valider le CAPTCHA.");
       return;
     }
 
-    setFormData((prevData) => ({ ...prevData, captcha: captchaToken }));
+    const updatedFormData = { ...formData, captcha: captchaToken };
 
     const validationResult = contactSchema.safeParse(formData);
     if (!validationResult.success) {
@@ -90,7 +86,7 @@ export default function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(updatedFormData),
       });
 
       const data = await res.json();
