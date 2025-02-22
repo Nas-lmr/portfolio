@@ -31,6 +31,20 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Créer le fichier .env
+        run: |
+          set -e
+          echo "EMAIL_HOST=${{ secrets.EMAIL_HOST }}" > .env
+          echo "EMAIL_PORT=${{ secrets.EMAIL_PORT }}" >> .env
+          echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" >> .env
+          echo "CONTACT_USER=${{ secrets.CONTACT_USER }}" >> .env
+          echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
+          echo "UPSTASH_REDIS_REST_URL=${{ secrets.DB_NAME }}" >> .env
+          echo "UPSTASH_REDIS_REST_TOKEN=${{ secrets.UPSTASH_REDIS_REST_TOKEN }}" >> .env 
+          echo "RECAPTCHA_SECRET_KEY=${{ secrets.RECAPTCHA_SECRET_KEY }}" >> .env
+          echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}" >> .env
+          echo "NEXT_PUBLIC_CONTACT_EMAIL=${{ secrets.NEXT_PUBLIC_CONTACT_EMAIL }}" >> .env
+
       # 🔹 Build Next.js
       - name: Build application
         run: npm run build
