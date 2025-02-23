@@ -15,7 +15,9 @@ export const metadata: Metadata = {
     "Découvrez mes projets et compétences en développement web : React, Next.js, TypeScript, Tailwind CSS, et plus.",
   keywords:
     "Développement web, Développeur Full Stack, Next.js, React, TypeScript, Portfolio, Frontend, Backend",
-  authors: [{ name: "Lamamra Nasreddine", url: "https://nasdevpro.fr" }],
+  authors: [
+    { name: "Lamamra Nasreddine", url: process.env.NEXT_PUBLIC_WEBSITE_URL! },
+  ],
   creator: "Lamamra Nasreddine",
   publisher: "Lamamra Nasreddine",
   robots: "index, follow",
@@ -25,16 +27,8 @@ export const metadata: Metadata = {
       "Développeur Full Stack spécialisé en React, Next.js et TypeScript. Découvrez mes projets et compétences en développement web moderne.",
     type: "website",
     locale: "fr_FR",
-    url: process.env.NEXT_PUBLIC_SITE_URL,
+    url: process.env.NEXT_PUBLIC_WEBSITE_URL!,
     siteName: "Nasdevpro",
-    images: [
-      {
-        url: "https://nasdevpro.fr/images/preview.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Lamamra Nasreddine - Développeur FullStack",
-      },
-    ],
   },
 };
 
