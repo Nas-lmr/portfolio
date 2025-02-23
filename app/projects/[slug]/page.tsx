@@ -27,15 +27,15 @@ export default function ProjectDetailPage() {
         {project.title}
       </h1>
 
-      <div className="grid md:grid-cols-2 md:h-full gap-12">
-        <div className="space-y-4 flex flex-col items-center justify-around">
+      <div className="grid md:grid-cols-2 md:h-full gap-12 ">
+        <div className="space-y-4 flex flex-col items-center justify-around ">
           {selectedImage && (
             <Image
               src={selectedImage}
               alt={`${project.title} - maquette principale`}
               width={400}
               height={400}
-              className="rounded-lg shadow-lg  w-1/4 md:w-48 max-h-[400px]"
+              className="rounded-lg shadow-lg border border-zinc-500  w-1/4 md:w-48 max-h-[400px]"
             />
           )}
 
