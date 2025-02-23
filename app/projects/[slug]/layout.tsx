@@ -1,13 +1,15 @@
+// app/projects/[slug]/layout.tsx
+
 import { Metadata } from "next";
 
-export async function generateMetadata({
-  params,
-}: {
+type Params = {
   params: { slug: string };
-}): Promise<Metadata> {
+};
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: `${params.slug}`,
-    description: `Découvrez le projet ${params.slug} que j'ai réalisé.`,
+    description: `Découvrez le projet ${params.slug} réalisé par Nasreddine Lamamra.`,
   };
 }
 
