@@ -5,8 +5,14 @@ import NextIcon from "@/public/icons/icon-nextjs.svg";
 import NodeIcon from "@/public/icons/icon-nodejs.svg";
 import ReactIcon from "@/public/icons/icon-react.svg";
 import TailwindIcon from "@/public/icons/icon-tailwindcss.svg";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "À propos de moi",
+  description: "Découvrez qui je suis et ce que je fais",
+};
 
 export default function About() {
   return (

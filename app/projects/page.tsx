@@ -1,6 +1,12 @@
 import Button from "@/components/global/Button";
 import LittleProjectCard from "@/components/infos/LittleProjectCard";
 import { projects } from "@/lib/projects";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Mes Projets",
+  description: "Découvrez mes projets et compétences en développement web.",
+};
 
 export default function ProjectPage() {
   return (

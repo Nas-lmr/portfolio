@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CloseLogo from "../../public/cross.svg";
 import GithubLogo from "../../public/icons/github-icon.svg";
 import LinkedinLogo from "../../public/icons/linkedin-icon.svg";
@@ -19,6 +19,18 @@ export default function MenuBurger() {
   const handleCloseMenu = () => {
     setIsMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isMenuOpen]);
 
   return (
     <div className="md:hidden">
