@@ -52,6 +52,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/icon.png" />
+        <meta
+          name="google-site-verification"
+          content="XdgF_DPKYnxfM3SdL4eN30KovF5_CSxPFxolySZq4J8"
+        />
       </head>
       <body
         className={`${montserrat.className} bg-zinc-900 antialiased min-h-screen text-zinc-50`}
