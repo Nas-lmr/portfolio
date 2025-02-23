@@ -5,8 +5,10 @@ import { Montserrat } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
+const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL!;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL!),
+  metadataBase: new URL(websiteUrl),
   title: {
     default: "Lamamra Nasreddine - Développeur FullStack",
     template: "%s | Lamamra Nasreddine - Développeur FullStack",
@@ -15,9 +17,7 @@ export const metadata: Metadata = {
     "Découvrez mes projets et compétences en développement web : React, Next.js, TypeScript, Tailwind CSS, et plus.",
   keywords:
     "Développement web, Développeur Full Stack, Next.js, React, TypeScript, Portfolio, Frontend, Backend",
-  authors: [
-    { name: "Lamamra Nasreddine", url: process.env.NEXT_PUBLIC_WEBSITE_URL! },
-  ],
+  authors: [{ name: "Lamamra Nasreddine", url: websiteUrl }],
   creator: "Lamamra Nasreddine",
   publisher: "Lamamra Nasreddine",
   robots: "index, follow",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
       "Développeur Full Stack spécialisé en React, Next.js et TypeScript. Découvrez mes projets et compétences en développement web moderne.",
     type: "website",
     locale: "fr_FR",
-    url: process.env.NEXT_PUBLIC_WEBSITE_URL!,
+    url: websiteUrl,
     siteName: "Nasdevpro",
   },
 };
