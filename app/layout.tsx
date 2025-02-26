@@ -24,11 +24,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Lamamra Nasreddine - Développeur FullStack",
     description:
-      "Développeur Full Stack spécialisé en React, Next.js et TypeScript. Découvrez mes projets et compétences en développement web moderne.",
+      "Développeur Full Stack spécialisé en React, Next.js et TypeScript. Découvrez mes projets et compétences en développement web.",
     type: "website",
     locale: "fr_FR",
     url: websiteUrl,
     siteName: "Nasdevpro",
+    images: [
+      {
+        url: `${websiteUrl}/icon.png`,
+        width: 512,
+        height: 512,
+        alt: "Logo de Lamamra Nasreddine",
+      },
+    ],
   },
 };
 
