@@ -59,6 +59,7 @@ export default function FormContact() {
           <input
             type="text"
             name="name"
+            placeholder="Entrez votre nom"
             className="w-full p-2 text-zinc-800 border rounded-lg focus:ring focus:ring-emerald-300"
             required
           />
@@ -68,6 +69,7 @@ export default function FormContact() {
           <input
             type="email"
             name="email"
+            placeholder="Entrez votre email"
             className="w-full p-2 text-zinc-800 border rounded-lg focus:ring focus:ring-emerald-300"
             required
           />
@@ -77,6 +79,7 @@ export default function FormContact() {
           <label className="block text-gray-200">Message</label>
           <textarea
             name="message"
+            placeholder="Laissez votre message ici..."
             className="w-full p-2 text-zinc-800 border rounded-lg h-32 focus:ring focus:ring-emerald-300"
             required
           />
