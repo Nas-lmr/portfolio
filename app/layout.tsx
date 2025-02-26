@@ -59,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/icon.png" />
+        <link rel="icon" href="/icon.png" type="image/png" />
       </head>
       <body
         className={`${montserrat.className} bg-zinc-900 antialiased min-h-screen text-zinc-50`}
