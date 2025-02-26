@@ -80,7 +80,7 @@ export default function MenuBurger() {
             onClick={handleCloseMenu}
             href="/projects"
             className={`text-white w-fit${
-              pathname === "/projets" ? "border-b-4 border-emerald-400" : ""
+              pathname === "/projects" ? "border-b-4 border-emerald-400" : ""
             }`}
           >
             <span className="text-emerald-400 mr-2">03.</span>Mes Projets
@@ -89,7 +89,7 @@ export default function MenuBurger() {
             onClick={handleCloseMenu}
             href="/contact"
             className={`text-white w-fit ${
-              pathname === "//contact" ? "border-b-4 border-emerald-400" : ""
+              pathname === "/contact" ? "border-b-4 border-emerald-400" : ""
             }`}
           >
             <span className="text-emerald-400 mr-2">04.</span>Contact
