@@ -22,7 +22,7 @@ export const projects = [
     logo: "/icon.png",
     shortDescription: "Portfolio personnel",
     description:
-      "Le but de ce projet était de concevoir et de développer un portfolio personnel pour présenter mes compétences et mes projets. Ce portfolio est accessible via un navigateur web.",
+      "Le but de ce projet était de concevoir et de développer un portfolio personnel pour présenter mes compétences et mes projets.",
     techno: ["NextJS, TailwindCSS, TypeScript, Zod, Google Recaptcha"],
     images: [
       "/images/portfolio-home.png",
@@ -32,16 +32,5 @@ export const projects = [
     details: "Voici quelques détails supplémentaires sur mon portfolio.",
     link: process.env.NEXT_PUBLIC_WEBSITE_URL!,
     link2: "https://github.com/Nas-lmr/portfolio",
-  },
-  {
-    slug: "",
-    title: "???",
-    logo: "",
-    shortDescription: "En cours de développement",
-    description: "En cours de développement",
-    techno: ["NextJS, Typescript, TailwindCSS, Prisma"],
-    images: [""],
-    details: "",
-    link: "",
   },
 ];
