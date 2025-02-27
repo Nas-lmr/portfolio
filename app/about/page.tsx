@@ -40,8 +40,7 @@ export default function About() {
         </div>
         <p className="text-justify w-11/12 md:mt-6 md:text-center  md:pl-11 xl:text-lg mobile-landscape:text-sm mobile-landscape:w-5/6">
           Aujourd’hui, je suis à la recherche d’une opportunité pour mettre mes
-          compétences au service de projets innovants et contribuer à des
-          solutions qui ont un impact.
+          compétences au service de projets innovants.
         </p>
         <p className="w-11/12 text-center  md:pl-11 xl:text-lg mobile-landscape:text-sm mobile-landscape:w-5/6">
           Vous avez un projet en tête ? <br />
