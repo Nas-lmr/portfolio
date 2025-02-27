@@ -32,8 +32,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${websiteUrl}/icon.png`,
-        width: 512,
-        height: 512,
+        width: 350,
+        height: 350,
         alt: "Logo de Lamamra Nasreddine",
       },
     ],
