@@ -40,7 +40,7 @@ export default function MenuBurger() {
         width={30}
         height={30}
         onClick={toggleMenu}
-        className="cursor-pointer "
+        className="cursor-pointer"
       />
       <div
         className={`fixed flex flex-col top-0 right-0 h-full w-3/4 max-w-xs bg-zinc-900 shadow-lg z-50 transform ${
